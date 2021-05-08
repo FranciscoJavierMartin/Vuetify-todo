@@ -22,13 +22,16 @@
       </template>
     </v-list-item>
     <v-divider />
+    <dialog-delete />
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import DialogDelete from "./Dialogs/DialogDelete.vue";
 
 export default {
+  components: { DialogDelete },
   props: {
     task: {
       type: Object,
