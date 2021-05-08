@@ -1,16 +1,6 @@
 <template>
   <div class="home">
-    <v-text-field
-      v-model="newTaskTitle"
-      @click:append="addTask"
-      @keyup.enter="addTask"
-      class="pa-3"
-      outlined
-      label="Add Task"
-      append-icon="mdi-plus"
-      hide-details
-      clearable
-    ></v-text-field>
+    <field-add-task />
     <v-list flat class="pa-0" v-if="this.tasks.length > 0">
       <div v-for="task in tasks" :key="task.id">
         <v-list-item
@@ -46,22 +36,15 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import FieldAddTask from "@/components/Todo/FieldAddTask.vue";
 
 export default {
-  data() {
-    return {
-      newTaskTitle: "",
-    };
-  },
+  components: { FieldAddTask },
   computed: {
     ...mapGetters(["tasks"]),
   },
   methods: {
-    ...mapActions(["addTaskStore", "toggleTaskStore", "deleteTaskStore"]),
-    addTask() {
-      this.addTaskStore(this.newTaskTitle);
-      this.newTaskTitle = "";
-    },
+    ...mapActions(["toggleTaskStore", "deleteTaskStore"]),
     toggleTask(id) {
       this.toggleTaskStore(id);
     },
