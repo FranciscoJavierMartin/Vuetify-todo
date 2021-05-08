@@ -37,7 +37,7 @@
         ></v-img>
       </template>
 
-      <v-app-bar-nav-icon @click="drawer = !drawer"/>
+      <v-app-bar-nav-icon @click="drawer = !drawer" />
 
       <v-app-bar-title>Vuetify Todo</v-app-bar-title>
 
@@ -64,12 +64,14 @@
 
 <script>
 export default {
-  data: () => ({
-    drawer: null,
-    items: [
-      { title: "Todo", icon: "mdi-format-list-checks", to: "/" },
-      { title: "About", icon: "mdi-help-box", to: "/about" },
-    ],
-  }),
+  data() {
+    return {
+      drawer: false,
+      items: [
+        { title: "Todo", icon: "mdi-format-list-checks", to: "/" },
+        { title: "About", icon: "mdi-help-box", to: "/about" },
+      ],
+    };
+  },
 };
 </script>
