@@ -53,9 +53,9 @@ export default new Vuex.Store({
       state.tasks = state.tasks.filter((task) => task.id !== payload);
     },
     saveTask(state, payload) {
-      const task = state.tasks.find((task) => task.id === payload.id);
-      if (task) {
-        task.title = payload.title;
+      const index = state.tasks.findIndex((task) => task.id === payload.id);
+      if (index !== -1) {
+        Object.assign(state.tasks[index], payload);
       }
     },
     showSnackbar(state, payload) {
