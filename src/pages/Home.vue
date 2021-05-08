@@ -45,28 +45,16 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
       newTaskTitle: "",
-      tasks: [
-        // {
-        //   id: 1,
-        //   title: "Wake up",
-        //   done: false,
-        // },
-        // {
-        //   id: 2,
-        //   title: "Go to run",
-        //   done: false,
-        // },
-        // {
-        //   id: 3,
-        //   title: "Eat breakfast",
-        //   done: false,
-        // },
-      ],
     };
+  },
+  computed: {
+    ...mapGetters(["tasks"]),
   },
   methods: {
     addTask() {
