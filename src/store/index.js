@@ -14,16 +14,19 @@ export default new Vuex.Store({
         id: 1,
         title: 'Wake up',
         done: false,
+        dueDate: '2020-10-16',
       },
       {
         id: 2,
         title: 'Go to run',
         done: false,
+        dueDate: '2020-10-17',
       },
       {
         id: 3,
         title: 'Eat breakfast',
         done: false,
+        dueDate: null,
       },
     ],
   },
@@ -76,6 +79,7 @@ export default new Vuex.Store({
         id: Date.now(),
         title: payload,
         done: false,
+        dueDate: null,
       });
       dispatch('showSnackbar', `'${payload}' added`);
     },
