@@ -12,7 +12,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import FieldAddTask from "@/components/Todo/FieldAddTask.vue";
-import ListTasks from "../components/Todo/ListTasks.vue";
+import ListTasks from "@/components/Todo/ListTasks.vue";
 
 export default {
   components: { FieldAddTask, ListTasks },
