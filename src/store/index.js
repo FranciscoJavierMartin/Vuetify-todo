@@ -50,8 +50,18 @@ export default new Vuex.Store({
       state.tasks = state.tasks.filter((task) => task.id !== payload);
     },
     showSnackbar(state, payload) {
-      state.snackbar.show = !state.snackbar.show;
-      state.snackbar.text = payload;
+      let timeout = 0;
+      if (state.snackbar.show) {
+        state.snackbar.show = false;
+        timeout = 300;
+      }
+      setTimeout(() => {
+        state.snackbar.show = true;
+        state.snackbar.text = payload;
+      }, timeout);
+    },
+    hideSnackbar(state) {
+      state.snackbar.show = false;
     },
   },
   actions: {
@@ -72,6 +82,9 @@ export default new Vuex.Store({
     },
     showSnackbar({ commit }, payload) {
       commit('showSnackbar', payload);
+    },
+    hideSnackbar({ commit }) {
+      commit('hideSnackbar');
     },
   },
   modules: {},

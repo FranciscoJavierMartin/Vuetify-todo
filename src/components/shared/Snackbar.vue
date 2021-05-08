@@ -2,7 +2,7 @@
   <v-snackbar v-model="snackbar.show">
     {{ snackbar.text }}
     <template v-slot:action="{ attrs }">
-      <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
+      <v-btn color="pink" text v-bind="attrs" @click="hideSnackbar">
         Close
       </v-btn>
     </template>
@@ -10,10 +10,13 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters(["snackbar"]),
+  },
+  methods: {
+    ...mapActions(["hideSnackbar"]),
   },
 };
 </script>
