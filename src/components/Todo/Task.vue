@@ -26,11 +26,22 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   props: {
     task: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    ...mapActions(["toggleTaskStore", "deleteTaskStore"]),
+    toggleTask(id) {
+      this.toggleTaskStore(id);
+    },
+    deleteTask(id) {
+      this.deleteTaskStore(id);
     },
   },
 };
