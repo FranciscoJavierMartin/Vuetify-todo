@@ -57,7 +57,7 @@ export default {
     ...mapGetters(["tasks"]),
   },
   methods: {
-    ...mapActions(["addTaskStore", "toggleTaskStore"]),
+    ...mapActions(["addTaskStore", "toggleTaskStore", "deleteTaskStore"]),
     addTask() {
       this.addTaskStore(this.newTaskTitle);
       this.newTaskTitle = "";
@@ -66,7 +66,7 @@ export default {
       this.toggleTaskStore(id);
     },
     deleteTask(id) {
-      this.tasks = this.tasks.filter((task) => task.id !== id);
+      this.deleteTaskStore(id);
     },
   },
 };

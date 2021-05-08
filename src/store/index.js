@@ -39,6 +39,9 @@ export default new Vuex.Store({
         }
       });
     },
+    deleteTask(state, payload) {
+      state.tasks = state.tasks.filter((task) => task.id !== payload);
+    },
   },
   actions: {
     addTaskStore({ commit }, payload) {
@@ -50,6 +53,9 @@ export default new Vuex.Store({
     },
     toggleTaskStore({ commit }, payload) {
       commit('toggleTask', payload);
+    },
+    deleteTaskStore({ commit }, payload) {
+      commit('deleteTask', payload);
     },
   },
   modules: {},
