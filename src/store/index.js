@@ -5,6 +5,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    snackbar: {
+      show: false,
+      text: '',
+    },
     tasks: [
       {
         id: 1,
@@ -27,6 +31,9 @@ export default new Vuex.Store({
     tasks(state) {
       return state.tasks;
     },
+    snackbar(state) {
+      return state.snackbar;
+    },
   },
   mutations: {
     addTask(state, payload) {
@@ -42,20 +49,28 @@ export default new Vuex.Store({
     deleteTask(state, payload) {
       state.tasks = state.tasks.filter((task) => task.id !== payload);
     },
+    showSnackbar(state, payload) {
+      state.snackbar.show = !state.snackbar.show;
+      state.snackbar.text = payload;
+    },
   },
   actions: {
-    addTaskStore({ commit }, payload) {
+    addTaskStore({ commit, dispatch }, payload) {
       commit('addTask', {
         id: Date.now(),
         title: payload,
         done: false,
       });
+      dispatch('showSnackbar', `'${payload}' added`);
     },
     toggleTaskStore({ commit }, payload) {
       commit('toggleTask', payload);
     },
     deleteTaskStore({ commit }, payload) {
       commit('deleteTask', payload);
+    },
+    showSnackbar({ commit }, payload) {
+      commit('showSnackbar', payload);
     },
   },
   modules: {},

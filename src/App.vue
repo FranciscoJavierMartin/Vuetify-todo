@@ -58,12 +58,18 @@
 
     <v-main>
       <router-view />
+      <snackbar />
     </v-main>
   </v-app>
 </template>
 
 <script>
+import Snackbar from "@/components/shared/Snackbar.vue";
+
 export default {
+  components: {
+    Snackbar,
+  },
   data() {
     return {
       drawer: false,
