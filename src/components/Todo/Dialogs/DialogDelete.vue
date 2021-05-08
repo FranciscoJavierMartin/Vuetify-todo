@@ -31,6 +31,10 @@ export default {
   },
   methods: {
     ...mapActions(["deleteTaskStore"]),
+    deleteTask() {
+      this.deleteTaskStore({ id: this.task.id, title: this.task.title });
+      this.$emit("close");
+    },
   },
 };
 </script>
