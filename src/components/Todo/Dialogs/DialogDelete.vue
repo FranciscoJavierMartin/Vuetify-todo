@@ -1,28 +1,23 @@
 <template>
   <v-dialog :value="true" persistent max-width="290">
     <v-card>
-      <v-card-title class="headline">
-        Use Google's location service?
-      </v-card-title>
-      <v-card-text
-        >Let Google help apps determine location. This means sending anonymous
-        location data to Google, even when no apps are running.</v-card-text
-      >
+      <v-card-title class="headline"> Delete task? </v-card-title>
+      <v-card-text>Are you sure you wanna delete this task?</v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="green darken-1" text @click="dialog = false">
-          Disagree
-        </v-btn>
-        <v-btn color="green darken-1" text @click="dialog = false">
-          Agree
-        </v-btn>
+        <v-btn text @click="dialog = false"> No </v-btn>
+        <v-btn color="red" text @click="dialog = false"> Yes </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    
+  }
+};
 </script>
 
 <style>

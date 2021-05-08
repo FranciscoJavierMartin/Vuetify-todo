@@ -15,14 +15,14 @@
           >
         </v-list-item-content>
         <v-list-item-action>
-          <v-btn icon @click.stop="deleteTask(task.id)">
+          <v-btn icon @click.stop="dialogs.delete = true">
             <v-icon color="primary lighten-1">mdi-delete</v-icon>
           </v-btn>
         </v-list-item-action>
       </template>
     </v-list-item>
     <v-divider />
-    <dialog-delete />
+    <dialog-delete v-if="this.dialogs.delete" />
   </div>
 </template>
 
@@ -37,6 +37,13 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  data() {
+    return {
+      dialogs: {
+        delete: false,
+      },
+    };
   },
   methods: {
     ...mapActions(["toggleTaskStore", "deleteTaskStore"]),
