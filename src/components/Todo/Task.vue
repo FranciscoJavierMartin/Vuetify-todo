@@ -41,7 +41,7 @@ export default {
       this.toggleTaskStore(id);
     },
     deleteTask(id) {
-      this.deleteTaskStore(id);
+      this.deleteTaskStore({ id, title: this.task.title });
     },
   },
 };

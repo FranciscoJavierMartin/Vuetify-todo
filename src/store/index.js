@@ -66,8 +66,9 @@ export default new Vuex.Store({
     toggleTaskStore({ commit }, payload) {
       commit('toggleTask', payload);
     },
-    deleteTaskStore({ commit }, payload) {
-      commit('deleteTask', payload);
+    deleteTaskStore({ commit, dispatch }, payload) {
+      commit('deleteTask', payload.id);
+      dispatch('showSnackbar', `'${payload.title}' deleted`);
     },
     showSnackbar({ commit }, payload) {
       commit('showSnackbar', payload);
