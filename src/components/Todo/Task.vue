@@ -22,7 +22,11 @@
       </template>
     </v-list-item>
     <v-divider />
-    <dialog-delete v-if="this.dialogs.delete" :task="task" />
+    <dialog-delete
+      v-if="this.dialogs.delete"
+      :task="task"
+      @close="dialogs.delete = false"
+    />
   </div>
 </template>
 

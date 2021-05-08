@@ -7,7 +7,7 @@
       >
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn text @click="dialog = false"> No </v-btn>
+        <v-btn text @click="$emit('close')"> No </v-btn>
         <v-btn
           color="red"
           text
@@ -28,11 +28,6 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  data() {
-    return {
-      dialog: false,
-    };
   },
   methods: {
     ...mapActions(["deleteTaskStore"]),
