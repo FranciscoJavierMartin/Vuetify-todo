@@ -28,7 +28,19 @@ export default new Vuex.Store({
       return state.tasks;
     },
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    addTask(state, payload) {
+      state.tasks.push(payload);
+    },
+  },
+  actions: {
+    addTaskStore({ commit }, payload) {
+      commit('addTask', {
+        id: Date.now(),
+        title: payload,
+        done: false,
+      });
+    },
+  },
   modules: {},
 });

@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
@@ -57,13 +57,9 @@ export default {
     ...mapGetters(["tasks"]),
   },
   methods: {
+    ...mapActions(["addTaskStore"]),
     addTask() {
-      let newTask = {
-        id: Date.now(),
-        title: this.newTaskTitle,
-        done: false,
-      };
-      this.tasks.push(newTask);
+      this.addTaskStore(this.newTaskTitle);
       this.newTaskTitle = "";
     },
     toggleTask(id) {
