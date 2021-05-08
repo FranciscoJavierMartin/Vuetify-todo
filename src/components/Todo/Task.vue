@@ -15,38 +15,25 @@
           >
         </v-list-item-content>
         <v-list-item-action>
-          <task-menu />
+          <task-menu :task="task" />
         </v-list-item-action>
       </template>
     </v-list-item>
     <v-divider />
-    <dialog-delete
-      v-if="this.dialogs.delete"
-      :task="task"
-      @close="dialogs.delete = false"
-    />
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import DialogDelete from "./Dialogs/DialogDelete.vue";
 import TaskMenu from "./TaskMenu.vue";
 
 export default {
-  components: { DialogDelete, TaskMenu },
+  components: { TaskMenu },
   props: {
     task: {
       type: Object,
       required: true,
     },
-  },
-  data() {
-    return {
-      dialogs: {
-        delete: false,
-      },
-    };
   },
   methods: {
     ...mapActions(["toggleTaskStore", "deleteTaskStore"]),
