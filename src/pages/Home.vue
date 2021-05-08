@@ -1,6 +1,17 @@
 <template>
   <div class="home">
-    <v-list flat class="pa-0">
+    <v-text-field
+      v-model="newTaskTitle"
+      @click:append="addTask"
+      @keyup.enter="addTask"
+      class="pa-3"
+      outlined
+      label="Add Task"
+      append-icon="mdi-plus"
+      hide-details
+      clearable
+    ></v-text-field>
+    <v-list flat class="pa-0" v-if="this.tasks.length > 0">
       <div v-for="task in tasks" :key="task.id">
         <v-list-item
           @click="toggleTask(task.id)"
@@ -26,6 +37,10 @@
         <v-divider />
       </div>
     </v-list>
+    <div v-else class="no-tasks">
+      <v-icon size="100" color="primary"> mdi-check </v-icon>
+      <div class="text-h5 primary--text">No tasks</div>
+    </div>
   </div>
 </template>
 
@@ -33,26 +48,36 @@
 export default {
   data() {
     return {
+      newTaskTitle: "",
       tasks: [
-        {
-          id: 1,
-          title: "Wake up",
-          done: false,
-        },
-        {
-          id: 2,
-          title: "Go to run",
-          done: false,
-        },
-        {
-          id: 3,
-          title: "Eat breakfast",
-          done: false,
-        },
+        // {
+        //   id: 1,
+        //   title: "Wake up",
+        //   done: false,
+        // },
+        // {
+        //   id: 2,
+        //   title: "Go to run",
+        //   done: false,
+        // },
+        // {
+        //   id: 3,
+        //   title: "Eat breakfast",
+        //   done: false,
+        // },
       ],
     };
   },
   methods: {
+    addTask() {
+      let newTask = {
+        id: Date.now(),
+        title: this.newTaskTitle,
+        done: false,
+      };
+      this.tasks.push(newTask);
+      this.newTaskTitle = "";
+    },
     toggleTask(id) {
       this.tasks.forEach((task) => {
         if (task.id === id) {
@@ -66,3 +91,13 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.no-tasks {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+}
+</style>
