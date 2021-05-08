@@ -32,6 +32,13 @@ export default new Vuex.Store({
     addTask(state, payload) {
       state.tasks.push(payload);
     },
+    toggleTask(state, payload) {
+      state.tasks.forEach((task) => {
+        if (task.id === payload) {
+          task.done = !task.done;
+        }
+      });
+    },
   },
   actions: {
     addTaskStore({ commit }, payload) {
@@ -40,6 +47,9 @@ export default new Vuex.Store({
         title: payload,
         done: false,
       });
+    },
+    toggleTaskStore({ commit }, payload) {
+      commit('toggleTask', payload);
     },
   },
   modules: {},

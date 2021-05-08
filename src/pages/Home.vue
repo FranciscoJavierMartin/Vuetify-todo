@@ -57,17 +57,13 @@ export default {
     ...mapGetters(["tasks"]),
   },
   methods: {
-    ...mapActions(["addTaskStore"]),
+    ...mapActions(["addTaskStore", "toggleTaskStore"]),
     addTask() {
       this.addTaskStore(this.newTaskTitle);
       this.newTaskTitle = "";
     },
     toggleTask(id) {
-      this.tasks.forEach((task) => {
-        if (task.id === id) {
-          task.done = !task.done;
-        }
-      });
+      this.toggleTaskStore(id);
     },
     deleteTask(id) {
       this.tasks = this.tasks.filter((task) => task.id !== id);
