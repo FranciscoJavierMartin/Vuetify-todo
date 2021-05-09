@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Localbase from 'localbase';
-import {} from '../constants/db';
+import { TASKS_COLLECTION_NAME } from '../constants/db';
 const db = new Localbase('db');
 
 Vue.use(Vuex);
@@ -127,8 +127,20 @@ export default new Vuex.Store({
       dispatch('showSnackbar', `'${payload.title}' deleted`);
     },
     saveTaskStore({ commit, dispatch }, payload) {
-      commit('saveTask', payload);
-      dispatch('showSnackbar', `'${payload.title}' updated`);
+      db.collection(TASKS_COLLECTION_NAME)
+        .doc({ id: payload.id })
+        .update(payload)
+        .then(() => {
+          commit('saveTask', payload);
+          dispatch('showSnackbar', `'${payload.title}' updated`);
+        });
+    },
+    getTasks({ dispatch }) {
+      db.collection(TASKS_COLLECTION_NAME)
+        .get()
+        .then((tasks) => {
+          dispatch('setTasks', tasks);
+        });
     },
     setTasks({ commit }, payload) {
       commit('setTasks', payload);

@@ -92,6 +92,9 @@ export default {
       return process.env.VUE_APP_TITLE;
     },
   },
+  mounted() {
+    this.$store.dispatch('getTasks');
+  }
 };
 </script>
 
