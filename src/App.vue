@@ -50,7 +50,9 @@
           <search />
         </v-row>
         <v-row>
-          <v-app-bar-title class="text-h4 ml-4"> Vuetify Todo</v-app-bar-title>
+          <v-app-bar-title class="text-h4 ml-4">
+            {{ this.appTitle }}</v-app-bar-title
+          >
         </v-row>
         <v-row>
           <live-date-time />
@@ -84,6 +86,11 @@ export default {
         { title: "About", icon: "mdi-help-box", to: "/about" },
       ],
     };
+  },
+  computed: {
+    appTitle() {
+      return process.env.VUE_APP_TITLE;
+    },
   },
 };
 </script>
