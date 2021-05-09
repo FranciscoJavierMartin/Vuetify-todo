@@ -37,12 +37,16 @@
         ></v-img>
       </template>
 
-      <v-app-bar-nav-icon @click="drawer = !drawer" />
-
-      <v-app-bar-title>Vuetify Todo</v-app-bar-title>
-
-      <v-spacer></v-spacer>
-      <search />
+      <v-container class="pa-0">
+        <v-row>
+          <v-app-bar-nav-icon @click="drawer = !drawer" />
+          <v-spacer></v-spacer>
+          <search />
+        </v-row>
+        <v-row>
+          <v-app-bar-title class="ml-4">Vuetify Todo</v-app-bar-title>
+        </v-row>
+      </v-container>
     </v-app-bar>
 
     <v-main>
@@ -54,7 +58,7 @@
 
 <script>
 import Snackbar from "@/components/shared/Snackbar.vue";
-import Search from './components/Tools/Search.vue';
+import Search from "./components/Tools/Search.vue";
 
 export default {
   components: {
