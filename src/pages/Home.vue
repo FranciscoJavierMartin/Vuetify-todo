@@ -1,10 +1,7 @@
 <template>
   <div>
     <field-add-task />
-    <list-tasks
-      v-if="this.filteredTasks.length > 0"
-      :tasks="this.filteredTasks"
-    />
+    <list-tasks v-if="this.filteredTasks.length > 0" />
     <no-tasks v-else />
     <button-sorting-done v-if="isSortingTasks" />
   </div>

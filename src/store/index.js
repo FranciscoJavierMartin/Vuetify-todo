@@ -77,6 +77,9 @@ export default new Vuex.Store({
         Object.assign(state.tasks[index], payload);
       }
     },
+    setTasks(state, payload) {
+      state.tasks = payload;
+    },
     showSnackbar(state, payload) {
       let timeout = 0;
       if (state.snackbar.show) {
@@ -118,6 +121,9 @@ export default new Vuex.Store({
     saveTaskStore({ commit, dispatch }, payload) {
       commit('saveTask', payload);
       dispatch('showSnackbar', `'${payload.title}' updated`);
+    },
+    setTasks({ commit }, payload) {
+      commit('setTasks', payload);
     },
     showSnackbar({ commit }, payload) {
       commit('showSnackbar', payload);

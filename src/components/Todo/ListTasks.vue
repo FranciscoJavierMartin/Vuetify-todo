@@ -1,6 +1,6 @@
 <template>
   <v-list flat class="pa-0">
-    <draggable :list="tasks" handle=".handle">
+    <draggable v-model="tasks" handle=".handle">
       <task v-for="task in tasks" :key="task.id" :task="task" />
     </draggable>
   </v-list>
@@ -12,10 +12,14 @@ import Task from "@/components/Todo/Task.vue";
 
 export default {
   components: { Task, draggable },
-  props: {
+  computed: {
     tasks: {
-      type: Array,
-      default: [],
+      get() {
+        return this.$store.getters.filteredTasks;
+      },
+      set(value) {
+        this.$store.dispatch("setTasks", value);
+      },
     },
   },
 };
