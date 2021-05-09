@@ -4,7 +4,7 @@
     @focus="searchClosed = false"
     @blur="searchClosed = true"
     class="expanding-search mt-1"
-    :class="{ closed: searchClosed && this.search }"
+    :class="{ closed: searchClosed && !this.search }"
     placeholder="Search"
     prepend-inner-icon="mdi-magnify"
     dense

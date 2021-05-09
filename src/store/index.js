@@ -30,6 +30,7 @@ export default new Vuex.Store({
         dueDate: null,
       },
     ],
+    sorting: false,
   },
   getters: {
     search(state) {
@@ -39,8 +40,8 @@ export default new Vuex.Store({
       return state.tasks;
     },
     filteredTasks(state) {
-      const searchTerm = state.search.toLowerCase();
-      return state.search
+      const searchTerm = state.search?.toLowerCase();
+      return searchTerm
         ? state.tasks.filter((task) =>
             task.title.toLowerCase().includes(searchTerm)
           )
@@ -48,6 +49,9 @@ export default new Vuex.Store({
     },
     snackbar(state) {
       return state.snackbar;
+    },
+    isSortingTasks(state) {
+      return state.sorting;
     },
   },
   mutations: {
@@ -87,6 +91,9 @@ export default new Vuex.Store({
     hideSnackbar(state) {
       state.snackbar.show = false;
     },
+    toggleSorting(state) {
+      state.sorting = !state.sorting;
+    },
   },
   actions: {
     setSearch({ commit }, payload) {
@@ -117,6 +124,9 @@ export default new Vuex.Store({
     },
     hideSnackbar({ commit }) {
       commit('hideSnackbar');
+    },
+    toggleSorting({ commit }) {
+      commit('toggleSorting');
     },
   },
   modules: {},

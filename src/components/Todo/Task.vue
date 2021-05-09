@@ -23,6 +23,11 @@
         <v-list-item-action>
           <task-menu :task="task" />
         </v-list-item-action>
+        <v-list-item-action v-if="isSortingTasks">
+          <v-btn color="primary" icon>
+            <v-icon>mdi-drag-horizontal-variant</v-icon>
+          </v-btn>
+        </v-list-item-action>
       </template>
     </v-list-item>
     <v-divider />
@@ -30,7 +35,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import { format } from "date-fns";
 import TaskMenu from "./TaskMenu.vue";
 
@@ -41,6 +46,9 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  computed: {
+    ...mapGetters(["isSortingTasks"]),
   },
   filters: {
     dateFormatted(value) {

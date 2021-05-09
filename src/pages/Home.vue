@@ -6,6 +6,7 @@
       :tasks="this.filteredTasks"
     />
     <no-tasks v-else />
+    <button-sorting-done v-if="isSortingTasks" />
   </div>
 </template>
 
@@ -14,11 +15,12 @@ import { mapGetters } from "vuex";
 import FieldAddTask from "@/components/Todo/FieldAddTask.vue";
 import ListTasks from "@/components/Todo/ListTasks.vue";
 import NoTasks from "../components/Todo/NoTasks.vue";
+import ButtonSortingDone from "../components/Todo/ButtonSortingDone.vue";
 
 export default {
-  components: { FieldAddTask, ListTasks, NoTasks },
+  components: { FieldAddTask, ListTasks, NoTasks, ButtonSortingDone },
   computed: {
-    ...mapGetters(["filteredTasks"]),
+    ...mapGetters(["filteredTasks", "isSortingTasks"]),
   },
 };
 </script>
