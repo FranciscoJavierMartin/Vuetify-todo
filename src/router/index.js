@@ -1,14 +1,14 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../pages/Home.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Home from '../pages/Home.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
   },
   {
     path: '/about',
@@ -16,12 +16,18 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../pages/About.vue')
-  }
-]
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../pages/About.vue'),
+  },
+];
 
 const router = new VueRouter({
-  routes
-})
+  routes,
+});
 
-export default router
+router.beforeEach((to, from, next) => {
+  document.title = `Vuetify Todo - ${to.name}`;
+  next();
+});
+
+export default router;
