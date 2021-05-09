@@ -111,10 +111,16 @@ export default new Vuex.Store({
       commit('toggleTask', payload);
     },
     deleteTaskStore({ commit, dispatch }, payload) {
-      commit('deleteTask', payload.id);
-      dispatch('showSnackbar', `'${payload.title}' deleted`);
+      db.collection(TASKS_COLLECTION_NAME)
+        .doc({ id: task.id })
+        .delete()
+        .then(() => {
+          commit('deleteTask', payload.id);
+          dispatch('showSnackbar', `'${payload.title}' deleted`);
+        });
     },
     saveTaskStore({ commit, dispatch }, payload) {
+      console.log(payload);
       db.collection(TASKS_COLLECTION_NAME)
         .doc({ id: payload.id })
         .update(payload)

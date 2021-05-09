@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-list-item
-      @click="toggleTask(task.id)"
+      @click="toggleTask"
       :class="{ 'blue lighten-5': task.done }"
       class="white"
       :ripple="false"
@@ -58,12 +58,9 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["toggleTaskStore", "deleteTaskStore"]),
-    toggleTask(id) {
-      this.toggleTaskStore(id);
-    },
-    deleteTask(id) {
-      this.deleteTaskStore({ id, title: this.task.title });
+    ...mapActions(["saveTaskStore"]),
+    toggleTask() {
+      this.saveTaskStore({ ...this.task, done: !this.task.done });
     },
   },
 };
