@@ -28,8 +28,8 @@
       color="primary"
       dark
       src="https://picsum.photos/1920/1080?random"
-      prominent
       class="pt-3"
+      height="170"
     >
       <template v-slot:img="{ props }">
         <v-img
@@ -45,7 +45,10 @@
           <search />
         </v-row>
         <v-row>
-          <v-app-bar-title class="ml-4">Vuetify Todo</v-app-bar-title>
+          <v-app-bar-title class="text-h4 ml-4"> Vuetify Todo</v-app-bar-title>
+        </v-row>
+        <v-row>
+          <live-date-time />
         </v-row>
       </v-container>
     </v-app-bar>
@@ -60,11 +63,13 @@
 <script>
 import Snackbar from "@/components/shared/Snackbar.vue";
 import Search from "./components/Tools/Search.vue";
+import LiveDateTime from "./components/Tools/LiveDateTime.vue";
 
 export default {
   components: {
     Snackbar,
     Search,
+    LiveDateTime,
   },
   data() {
     return {
