@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app>
+    <v-navigation-drawer v-model="drawer" app :mobile-breakpoint="768">
       <v-img
         class="pa-2 pt-7"
         max-height="170"
@@ -33,6 +33,7 @@
       dark
       src="https://picsum.photos/1920/1080?random"
       class="pt-3"
+      prominent
       height="170"
     >
       <template v-slot:img="{ props }">
@@ -42,7 +43,7 @@
         ></v-img>
       </template>
 
-      <v-container class="pa-0">
+      <v-container class="header-container pa-0">
         <v-row>
           <v-app-bar-nav-icon @click="drawer = !drawer" />
           <v-spacer></v-spacer>
@@ -86,3 +87,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.header-container {
+  max-width: none !important;
+}
+</style>
