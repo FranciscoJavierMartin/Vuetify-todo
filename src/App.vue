@@ -34,7 +34,7 @@
       src="https://picsum.photos/1920/1080?random"
       class="pt-3"
       prominent
-      height="238"
+      :height="isAddTaskBarVisible ? 238 : 170"
     >
       <template v-slot:img="{ props }">
         <v-img
@@ -57,7 +57,7 @@
         <v-row>
           <live-date-time />
         </v-row>
-        <v-row>
+        <v-row v-if="isAddTaskBarVisible">
           <field-add-task />
         </v-row>
       </v-container>
@@ -95,6 +95,9 @@ export default {
   computed: {
     appTitle() {
       return process.env.VUE_APP_TITLE;
+    },
+    isAddTaskBarVisible() {
+      return this.$route.name === "Home";
     },
   },
   mounted() {
