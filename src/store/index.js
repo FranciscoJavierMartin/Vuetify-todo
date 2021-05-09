@@ -141,7 +141,11 @@ export default new Vuex.Store({
         });
     },
     setTasks({ commit }, payload) {
-      commit('setTasks', payload);
+      db.collection(TASKS_COLLECTION_NAME)
+        .set(payload)
+        .then(() => {
+          commit('setTasks', payload);
+        });
     },
     showSnackbar({ commit }, payload) {
       commit('showSnackbar', payload);
