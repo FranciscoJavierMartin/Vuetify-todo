@@ -1,7 +1,8 @@
 <template>
   <div>
     <field-add-task />
-    <list-tasks v-if="this.filteredTasks.length > 0" />
+    <loading v-if="isLoadingTasks" />
+    <list-tasks v-else-if="this.filteredTasks.length > 0" />
     <no-tasks v-else />
     <button-sorting-done v-if="isSortingTasks" />
   </div>
@@ -13,11 +14,12 @@ import FieldAddTask from "@/components/Todo/FieldAddTask.vue";
 import ListTasks from "@/components/Todo/ListTasks.vue";
 import NoTasks from "../components/Todo/NoTasks.vue";
 import ButtonSortingDone from "../components/Todo/ButtonSortingDone.vue";
+import Loading from "../components/Todo/Loading.vue";
 
 export default {
-  components: { FieldAddTask, ListTasks, NoTasks, ButtonSortingDone },
+  components: { FieldAddTask, ListTasks, NoTasks, ButtonSortingDone, Loading },
   computed: {
-    ...mapGetters(["filteredTasks", "isSortingTasks"]),
+    ...mapGetters(["filteredTasks", "isSortingTasks", "isLoadingTasks"]),
   },
 };
 </script>

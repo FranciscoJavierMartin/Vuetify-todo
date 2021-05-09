@@ -13,27 +13,9 @@ export default new Vuex.Store({
       show: false,
       text: '',
     },
-    tasks: [
-      // {
-      //   id: 1,
-      //   title: 'Wake up',
-      //   done: false,
-      //   dueDate: '2020-10-16',
-      // },
-      // {
-      //   id: 2,
-      //   title: 'Go to run',
-      //   done: false,
-      //   dueDate: '2020-10-17',
-      // },
-      // {
-      //   id: 3,
-      //   title: 'Eat breakfast',
-      //   done: false,
-      //   dueDate: null,
-      // },
-    ],
+    tasks: [],
     sorting: false,
+    isLoadingTasks: false,
   },
   getters: {
     search(state) {
@@ -55,6 +37,9 @@ export default new Vuex.Store({
     },
     isSortingTasks(state) {
       return state.sorting;
+    },
+    isLoadingTasks(state) {
+      return state.isLoadingTasks;
     },
   },
   mutations: {
@@ -100,6 +85,9 @@ export default new Vuex.Store({
     toggleSorting(state) {
       state.sorting = !state.sorting;
     },
+    toggleLoadingTasks(state) {
+      state.isLoadingTasks = !state.isLoadingTasks;
+    },
   },
   actions: {
     setSearch({ commit }, payload) {
@@ -135,11 +123,15 @@ export default new Vuex.Store({
           dispatch('showSnackbar', `'${payload.title}' updated`);
         });
     },
-    getTasks({ dispatch }) {
+    getTasks({ dispatch, commit }) {
+      commit('toggleLoadingTasks');
       db.collection(TASKS_COLLECTION_NAME)
         .get()
         .then((tasks) => {
           dispatch('setTasks', tasks);
+        })
+        .finally(() => {
+          commit('toggleLoadingTasks');
         });
     },
     setTasks({ commit }, payload) {
