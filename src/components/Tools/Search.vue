@@ -3,6 +3,7 @@
     v-model="search"
     @focus="searchClosed = false"
     @blur="searchClosed = true"
+    :disabled="isSortingTasks"
     class="expanding-search mt-1"
     :class="{ closed: searchClosed && !this.search }"
     placeholder="Search"
@@ -14,6 +15,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -21,6 +23,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["isSortingTasks"]),
     search: {
       get() {
         return this.$store.getters.search;

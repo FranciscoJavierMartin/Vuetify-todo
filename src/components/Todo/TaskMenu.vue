@@ -83,7 +83,14 @@ export default {
           title: "Sort",
           icon: "mdi-drag-horizontal-variant",
           click() {
-            this.$store.dispatch("toggleSorting");
+            if (!this.$store.state.search) {
+              this.$store.dispatch("toggleSorting");
+            } else {
+              this.$store.dispatch(
+                "showSnackbar",
+                "Sort tasks is disabled when filter is activated."
+              );
+            }
           },
         },
       ],
