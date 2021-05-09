@@ -53,6 +53,7 @@ export default {
       if (!this.invalidInput) {
         this.saveTaskStore({ title: this.editedTitle, id: this.task.id });
         this.$emit("close");
+        this.$vuetify.goTo(0, { duration: 0 });
       }
     },
   },
