@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import Localbase from 'localbase';
+import {} from '../constants/db';
+const db = new Localbase('db');
 
 Vue.use(Vuex);
 
@@ -11,24 +14,24 @@ export default new Vuex.Store({
       text: '',
     },
     tasks: [
-      {
-        id: 1,
-        title: 'Wake up',
-        done: false,
-        dueDate: '2020-10-16',
-      },
-      {
-        id: 2,
-        title: 'Go to run',
-        done: false,
-        dueDate: '2020-10-17',
-      },
-      {
-        id: 3,
-        title: 'Eat breakfast',
-        done: false,
-        dueDate: null,
-      },
+      // {
+      //   id: 1,
+      //   title: 'Wake up',
+      //   done: false,
+      //   dueDate: '2020-10-16',
+      // },
+      // {
+      //   id: 2,
+      //   title: 'Go to run',
+      //   done: false,
+      //   dueDate: '2020-10-17',
+      // },
+      // {
+      //   id: 3,
+      //   title: 'Eat breakfast',
+      //   done: false,
+      //   dueDate: null,
+      // },
     ],
     sorting: false,
   },
@@ -103,13 +106,18 @@ export default new Vuex.Store({
       commit('setSearch', payload);
     },
     addTaskStore({ commit, dispatch }, payload) {
-      commit('addTask', {
+      const newTask = {
         id: Date.now(),
         title: payload,
         done: false,
         dueDate: null,
-      });
-      dispatch('showSnackbar', `'${payload}' added`);
+      };
+      db.collection(TASKS_COLLECTION_NAME)
+        .add(newTask)
+        .then(() => {
+          commit('addTask', newTask);
+          dispatch('showSnackbar', `'${payload}' added`);
+        });
     },
     toggleTaskStore({ commit }, payload) {
       commit('toggleTask', payload);
