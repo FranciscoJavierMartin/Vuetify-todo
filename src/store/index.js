@@ -112,7 +112,7 @@ export default new Vuex.Store({
     },
     deleteTaskStore({ commit, dispatch }, payload) {
       db.collection(TASKS_COLLECTION_NAME)
-        .doc({ id: task.id })
+        .doc({ id: payload.id })
         .delete()
         .then(() => {
           commit('deleteTask', payload.id);

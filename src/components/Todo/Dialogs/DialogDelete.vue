@@ -8,13 +8,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn text @click="$emit('close')"> No </v-btn>
-        <v-btn
-          color="red"
-          text
-          @click="deleteTaskStore({ id: task.id, title: task.title })"
-        >
-          Yes
-        </v-btn>
+        <v-btn color="red" text @click="deleteTask"> Yes </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
