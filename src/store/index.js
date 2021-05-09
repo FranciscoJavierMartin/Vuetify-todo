@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    search: '',
     snackbar: {
       show: false,
       text: '',
@@ -31,6 +32,9 @@ export default new Vuex.Store({
     ],
   },
   getters: {
+    search(state) {
+      return state.search;
+    },
     tasks(state) {
       return state.tasks;
     },
@@ -39,6 +43,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setSearch(state, payload) {
+      state.search = payload;
+    },
     addTask(state, payload) {
       state.tasks.push(payload);
     },
@@ -74,6 +81,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    setSearch({ commit }, payload) {
+      commit('setSearch', payload);
+    },
     addTaskStore({ commit, dispatch }, payload) {
       commit('addTask', {
         id: Date.now(),

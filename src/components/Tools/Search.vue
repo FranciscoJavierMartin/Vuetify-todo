@@ -4,7 +4,7 @@
     @focus="searchClosed = false"
     @blur="searchClosed = true"
     class="expanding-search mt-1"
-    :class="{ closed: searchClosed && !search }"
+    :class="{ closed: searchClosed && this.search }"
     placeholder="Search"
     prepend-inner-icon="mdi-magnify"
     dense
@@ -17,9 +17,18 @@
 export default {
   data() {
     return {
-      search: "",
       searchClosed: true,
     };
+  },
+  computed: {
+    search: {
+      get() {
+        return this.$store.getters.search;
+      },
+      set(newSearch) {
+        this.$store.dispatch("setSearch", newSearch);
+      },
+    },
   },
 };
 </script>
