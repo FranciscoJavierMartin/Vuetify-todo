@@ -38,6 +38,14 @@ export default new Vuex.Store({
     tasks(state) {
       return state.tasks;
     },
+    filteredTasks(state) {
+      const searchTerm = state.search.toLowerCase();
+      return state.search
+        ? state.tasks.filter((task) =>
+            task.title.toLowerCase().includes(searchTerm)
+          )
+        : state.tasks;
+    },
     snackbar(state) {
       return state.snackbar;
     },

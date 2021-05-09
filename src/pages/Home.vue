@@ -1,7 +1,10 @@
 <template>
   <div>
     <field-add-task />
-    <list-tasks v-if="this.tasks.length > 0" :tasks="this.tasks" />
+    <list-tasks
+      v-if="this.filteredTasks.length > 0"
+      :tasks="this.filteredTasks"
+    />
     <no-tasks v-else />
   </div>
 </template>
@@ -15,7 +18,7 @@ import NoTasks from "../components/Todo/NoTasks.vue";
 export default {
   components: { FieldAddTask, ListTasks, NoTasks },
   computed: {
-    ...mapGetters(["tasks"]),
+    ...mapGetters(["filteredTasks"]),
   },
 };
 </script>

@@ -29,6 +29,7 @@
       dark
       src="https://picsum.photos/1920/1080?random"
       prominent
+      class="pt-3"
     >
       <template v-slot:img="{ props }">
         <v-img
